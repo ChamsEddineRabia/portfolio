@@ -2,7 +2,6 @@
   function initPortfolioUpgrades(lang){
     lang = lang === 'fr' ? 'fr' : 'en';
 
-    // Make the language switcher share clean URLs.
     var prefix = location.pathname.indexOf('/portfolio/') !== -1 ? '/portfolio/' : '/';
     document.querySelectorAll('.language-switcher a').forEach(function(a){
       var code=(a.textContent||'').trim().toLowerCase();
@@ -12,7 +11,6 @@
       }
     });
 
-    // Availability / relocation message — broad, not role-restrictive.
     var status=document.querySelector('.status');
     if(status){
       status.classList.add('availability');
@@ -21,7 +19,6 @@
         : 'Available · Based in <b>Annaba, Algeria</b> · Open to relocation and engineering opportunities in Algeria and internationally.';
     }
 
-    // Direct proof for the MTO thesis.
     var projectLinks=document.querySelector('#projects .project-link-row');
     if(projectLinks && !projectLinks.querySelector('.project-proof-link')){
       var thesis=document.createElement('a');
@@ -33,7 +30,6 @@
       projectLinks.insertBefore(thesis,projectLinks.firstChild);
     }
 
-    // Official Algerian Red Crescent website.
     document.querySelectorAll('#volunteering .company').forEach(function(company){
       var t=company.textContent||'';
       if((t.indexOf('Algerian Red Crescent')!==-1 || t.indexOf('Croissant-Rouge Algérien')!==-1) && !company.querySelector('a[href="https://cra.dz/"]')){
@@ -48,7 +44,57 @@
       }
     });
 
-    // Discreet direct-section links.
+    // Correct Drive folder for the certificate collection.
+    var credentialFolder='https://drive.google.com/drive/folders/1_blt5TLJ1RgmJM3oubw2OLhRAo_UfJl7?usp=sharing';
+    var certIntro=document.querySelector('#certifications .section-intro');
+    if(certIntro){
+      var archive=certIntro.querySelector('a');
+      if(archive){
+        archive.href=credentialFolder;
+        archive.textContent=lang==='fr'?'Dossier des justificatifs ↗':'Credential folder ↗';
+      }
+    }
+
+    // Exact credential files confirmed inside the supplied Drive folder.
+    var credentialMap={
+      'Green Digital Program':'https://drive.google.com/file/d/1iqTNkknQdYsdnyrLpnGfwgeu-DXsh2DD/view?usp=drivesdk',
+      'The 21st Century Skills Training':'https://drive.google.com/file/d/1YJLOB_fcsaDJaLuhNKgPaOVRmUgxcsWW/view?usp=drivesdk',
+      'Global Summer School Edition 2021':'https://drive.google.com/file/d/1MqjcA4OXfZxuTzPHeYPDu6quPK_PTUCo/view?usp=drivesdk',
+      'Certificate of Organization — WikiStage Boumerdes':'https://drive.google.com/file/d/13GK9437nSxytom2KaOPHBTNKzNhei_ss/view?usp=drivesdk',
+      'Certificate of Appreciation — Student Energy of Boumerdes Ex-Future Designer Club':'https://drive.google.com/file/d/1Z0V08g1CUCISeM8levObyeon7GmJs4lP/view?usp=drivesdk',
+      'Writing Professional Emails — Online':'https://drive.google.com/file/d/1_fSfREiy_uSIf9-WySbB1SJqxXgGS2WG/view?usp=drivesdk',
+      'Synergy World Event — Participation':'https://drive.google.com/file/d/1YMQCnzSyN0Py4FTCCJuQQXtPi3mUQeen/view?usp=drivesdk',
+      'Algeria 2.0 Event — Participation':'https://drive.google.com/file/d/1_ersZu2ONUXBC_OISkoBuZiYh_bs2uLS/view?usp=drivesdk',
+      'Entrepreneurship Summer School Algeria 2016':'https://drive.google.com/file/d/1BUtii0eYUR_KJCNNsnkCN6JrHjEoJkYA/view?usp=drivesdk'
+    };
+
+    document.querySelectorAll('#certifications .cert').forEach(function(cert){
+      var titleNode=cert.querySelector('strong');
+      var meta=cert.querySelector('span');
+      if(!titleNode || !meta) return;
+      var title=(titleNode.textContent||'').trim();
+      var url=credentialMap[title];
+      if(!url || meta.querySelector('a[href="'+url+'"]')) return;
+      var a=document.createElement('a');
+      a.className='org-link credential-link';
+      a.href=url;
+      a.target='_blank';
+      a.rel='noopener noreferrer';
+      a.textContent=lang==='fr'?'Voir le justificatif ↗':'View credential ↗';
+      meta.appendChild(document.createTextNode(' '));
+      meta.appendChild(a);
+    });
+
+    // Supporting certificates tied to relevant portfolio entries.
+    addProof('#industrial .card','GP1Z Arzew','https://drive.google.com/file/d/1iegbtELt4NUN2WjS_Oh10jTvyll7dtYQ/view?usp=drivesdk',lang);
+    addProof('#industrial .card','Fertial Annaba','https://drive.google.com/file/d/19QisxxVa5ExrXBmXVVaM_SM4w8WKAQ8R/view?usp=drivesdk',lang);
+    addProof('#volunteering .entry','Volunteer / First Aider','https://drive.google.com/file/d/19R7CDEOqr57DHEOVaEP2umz7M0kxUoPr/view?usp=drivesdk',lang);
+    addProof('#volunteering .entry','Bénévole / Secouriste','https://drive.google.com/file/d/19R7CDEOqr57DHEOVaEP2umz7M0kxUoPr/view?usp=drivesdk',lang);
+    addProof('#volunteering .entry','Volunteer — TATWEER DZ','https://drive.google.com/file/d/1YwtPuH_AN2p1NMc5HmxY0Dh90nDUebLY/view?usp=drivesdk',lang);
+    addProof('#volunteering .entry','Bénévole — TATWEER DZ','https://drive.google.com/file/d/1YwtPuH_AN2p1NMc5HmxY0Dh90nDUebLY/view?usp=drivesdk',lang);
+    addProof('#leadership .entry','President','https://drive.google.com/file/d/19QPyfIzqAkIukG3A7hCaouMfUWuilu19/view?usp=drivesdk',lang);
+    addProof('#leadership .entry','Président','https://drive.google.com/file/d/19QPyfIzqAkIukG3A7hCaouMfUWuilu19/view?usp=drivesdk',lang);
+
     document.querySelectorAll('section.block[id]').forEach(function(section){
       var head=section.querySelector('.section-head');
       if(!head || head.querySelector('.deep-link')) return;
@@ -69,7 +115,6 @@
       head.appendChild(a);
     });
 
-    // Copy-email helper without changing the normal mailto action.
     var mail=document.querySelector('.contact-links a[href^="mailto:"]');
     if(mail && !document.querySelector('.contact-email-row')){
       var wrap=document.createElement('div');
@@ -90,10 +135,25 @@
       wrap.appendChild(btn);
     }
 
-    // Performance and accessibility hints for non-hero imagery.
     document.querySelectorAll('img.brand-logo').forEach(function(img){img.loading='lazy';img.decoding='async';});
     var portrait=document.getElementById('profile-photo');
     if(portrait){portrait.decoding='async';portrait.fetchPriority='high';}
+  }
+
+  function addProof(selector,title,url,lang){
+    document.querySelectorAll(selector).forEach(function(item){
+      var h=item.querySelector('h3');
+      if(!h || (h.textContent||'').trim()!==title || item.querySelector('a[href="'+url+'"]')) return;
+      var host=item.querySelector('.company') || item.querySelector('.date') || h;
+      var a=document.createElement('a');
+      a.className='org-link supporting-proof';
+      a.href=url;
+      a.target='_blank';
+      a.rel='noopener noreferrer';
+      a.textContent=lang==='fr'?'Justificatif ↗':'Credential ↗';
+      host.appendChild(document.createTextNode(' '));
+      host.appendChild(a);
+    });
   }
 
   var timer;
