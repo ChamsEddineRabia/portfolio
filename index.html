@@ -8,10 +8,12 @@
 <meta name="description" content="Professional digital portfolio of Chams Eddine Rabia — Petroleum | Petrochemical & Process Engineer with oilfield, refining, hydraulic software, technical training and leadership experience.">
 <link rel="stylesheet" href="styles.css">
 <link rel="stylesheet" href="enhancements.css">
+<link rel="stylesheet" href="assets/logos/logos.css">
 </head>
 <body>
 <div id="site-root"></div>
 <script src="assets/photo.js"></script>
+<script src="assets/logos/logos.js"></script>
 <script src="enhancements.js"></script>
 <script>
 (async function(){
@@ -20,6 +22,7 @@
   document.getElementById('site-root').innerHTML=html;
   const img=document.getElementById('profile-photo');
   if(img&&window.__profilePhoto) img.src='data:image/jpeg;base64,'+window.__profilePhoto;
+  if(window.applyPortfolioLogos) window.applyPortfolioLogos();
   if(window.initPortfolioEnhancements) window.initPortfolioEnhancements();
 })().catch(function(e){document.getElementById('site-root').innerHTML='<main style="font-family:Arial;padding:40px">Portfolio failed to load. Please refresh.</main>'; console.error(e);});
 </script>
