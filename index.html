@@ -6,24 +6,66 @@
 <meta name="theme-color" content="#0a0a0a">
 <title>Chams Eddine Rabia | Petroleum | Petrochemical & Process Engineer</title>
 <meta name="description" content="Professional digital portfolio of Chams Eddine Rabia — Petroleum | Petrochemical & Process Engineer with oilfield, refining, hydraulic software, technical training and leadership experience.">
-<link rel="stylesheet" href="styles.css?v=20260911-5">
-<link rel="stylesheet" href="enhancements.css?v=20260911-5">
-<link rel="stylesheet" href="assets/logos/logos.css?v=20260911-5">
+<link rel="stylesheet" href="styles.css?v=20260911-6">
+<link rel="stylesheet" href="enhancements.css?v=20260911-6">
+<link rel="stylesheet" href="assets/logos/logos.css?v=20260911-6">
 </head>
 <body>
 <div id="site-root"></div>
-<script src="assets/photo.js?v=20260911-5"></script>
-<script src="enhancements.js?v=20260911-5"></script>
+<script src="assets/photo.js?v=20260911-6"></script>
+<script src="enhancements.js?v=20260911-6"></script>
 <script>
 (async function(){
-  const v='20260911-5';
-  const files=["fragments/part-1.html","fragments/part-2.html","fragments/part-3.html","fragments/part-4.html","fragments/part-5.html"];
-  const html=(await Promise.all(files.map(f=>fetch(f+'?v='+v,{cache:'no-store'}).then(r=>{if(!r.ok) throw new Error(f); return r.text();})))).join("\n");
+  const v='20260911-6';
+  const supported=['en','fr'];
+  const params=new URLSearchParams(window.location.search);
+  const requested=params.get('lang');
+  const saved=localStorage.getItem('portfolioLanguage');
+  const lang=supported.includes(requested)?requested:(supported.includes(saved)?saved:'en');
+  localStorage.setItem('portfolioLanguage',lang);
+  document.documentElement.lang=lang;
+
+  if(lang==='fr'){
+    document.title='Chams Eddine Rabia | Ingénieur Pétrolier | Pétrochimie & Génie des Procédés';
+    document.querySelector('meta[name="description"]').setAttribute('content','Portfolio professionnel de Chams Eddine Rabia — ingénieur en pétrole, pétrochimie et génie des procédés avec expérience en services pétroliers, raffinage, hydraulique, HSE et leadership technique.');
+  }
+
+  const folder=lang==='fr'?'fragments-fr':'fragments';
+  const files=['part-1.html','part-2.html','part-3.html','part-4.html','part-5.html'];
+  const html=(await Promise.all(files.map(file=>fetch(folder+'/'+file+'?v='+v,{cache:'no-store'}).then(r=>{if(!r.ok) throw new Error(file); return r.text();})))).join('\n');
   document.getElementById('site-root').innerHTML=html;
+
   const img=document.getElementById('profile-photo');
   if(img&&window.__profilePhoto) img.src='data:image/jpeg;base64,'+window.__profilePhoto;
+
+  const topbarInner=document.querySelector('.topbar-inner');
+  const cta=document.querySelector('.header-cta');
+  if(topbarInner&&cta){
+    const actions=document.createElement('div');
+    actions.className='topbar-actions';
+    const switcher=document.createElement('div');
+    switcher.className='language-switcher';
+    switcher.setAttribute('role','group');
+    switcher.setAttribute('aria-label',lang==='fr'?'Choisir la langue':'Choose language');
+    ['en','fr'].forEach(code=>{
+      const a=document.createElement('a');
+      a.textContent=code.toUpperCase();
+      a.href='?lang='+code+(window.location.hash||'#top');
+      a.classList.toggle('is-active',code===lang);
+      a.setAttribute('aria-current',code===lang?'true':'false');
+      a.addEventListener('click',()=>localStorage.setItem('portfolioLanguage',code));
+      switcher.appendChild(a);
+    });
+    cta.before(actions);
+    actions.appendChild(cta);
+    actions.appendChild(switcher);
+  }
+
   if(window.initPortfolioEnhancements) window.initPortfolioEnhancements();
-})().catch(function(e){document.getElementById('site-root').innerHTML='<main style="font-family:Arial;padding:40px">Portfolio failed to load. Please refresh.</main>'; console.error(e);});
+})().catch(function(e){
+  document.getElementById('site-root').innerHTML='<main style="font-family:Arial;padding:40px">Portfolio failed to load. Please refresh.</main>';
+  console.error(e);
+});
 </script>
 </body>
 </html>
