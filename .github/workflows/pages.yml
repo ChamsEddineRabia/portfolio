@@ -22,6 +22,45 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
+      - name: Build local logo PNGs
+        run: |
+          python3 -m pip install --quiet pillow
+          python3 - <<'PY'
+          import base64, io, re
+          from pathlib import Path
+          from PIL import Image
+
+          js = Path('assets/logos/logos.js').read_text(encoding='utf-8')
+          match = re.search(r"const sprite='data:image/png;base64,([^']+)'", js)
+          if not match:
+              raise SystemExit('Embedded logo sprite not found')
+
+          sprite = Image.open(io.BytesIO(base64.b64decode(match.group(1)))).convert('RGBA')
+          if sprite.size != (900, 60):
+              raise SystemExit(f'Unexpected sprite size: {sprite.size}')
+
+          # Exact crops from the approved v13 sprite. Each source is an original logo supplied by Chams.
+          crops = {
+              'nesr':        (19,  6,  81, 54),
+              'labelle':     (107, 11, 193, 49),
+              'processtool': (223,  6, 277, 54),
+              'umbb':        (323, 11, 377, 49),
+              'fhc':         (425,  4, 475, 56),
+              'sonatrach':   (533,  5, 567, 54),
+              'fertial':     (607, 21, 693, 39),
+              'linde':       (707, 18, 793, 42),
+              'saidal':      (828,  6, 872, 54),
+          }
+
+          out = Path('assets/logos')
+          out.mkdir(parents=True, exist_ok=True)
+          for name, box in crops.items():
+              logo = sprite.crop(box)
+              logo.save(out / f'{name}.png', optimize=True)
+              print(name, logo.size)
+          PY
+
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
