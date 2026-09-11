@@ -1,16 +1,18 @@
 window.applyPortfolioLogos=function(){
   const META={
-    nesr:{i:0,b:[39,12,161,107],h:46,label:'NESR'},
-    labelle:{i:1,b:[15,22,185,98],h:42,label:'Groupe LaBelle'},
-    processtool:{i:2,b:[46,12,154,107],h:46,label:'ProcessTool'},
-    umbb:{i:3,b:[47,23,152,97],h:58,label:'UMBB'},
-    fhc:{i:4,b:[50,9,150,111],h:58,label:'FHC'},
-    sonatrach:{i:5,b:[67,11,132,108],h:60,label:'Sonatrach'},
-    fertial:{i:6,b:[15,42,185,78],h:30,label:'Fertial'},
-    linde:{i:7,b:[15,36,185,84],h:32,label:'Linde'},
-    saidal:{i:8,b:[56,12,144,107],h:50,label:'Saidal'}
+    nesr:{i:0,b:[19.5,6,80.5,53.5],h:56,label:'NESR'},
+    labelle:{i:1,b:[7.5,11,92.5,49],h:41,label:'Groupe LaBelle'},
+    processtool:{i:2,b:[23,6,77,53.5],h:56,label:'ProcessTool'},
+    umbb:{i:3,b:[23.5,11.5,76,48.5],h:61,label:'UMBB'},
+    fhc:{i:4,b:[25,4.5,75,55.5],h:64,label:'FHC'},
+    sonatrach:{i:5,b:[33.5,5.5,66,54],h:62,label:'Sonatrach'},
+    fertial:{i:6,b:[7.5,21,92.5,39],h:20,label:'Fertial'},
+    linde:{i:7,b:[7.5,18,92.5,42],h:26,label:'Linde'},
+    saidal:{i:8,b:[28,6,72,53.5],h:56,label:'Saidal'}
   };
-  const spriteW=1800,spriteH=120,cellW=200;
+  const spriteW=900,spriteH=60,cellW=100;
+  const sprite=window.__logoSprite;
+  if(!sprite)return;
   function makeLogo(key){
     const m=META[key];
     if(!m)return null;
@@ -23,7 +25,7 @@ window.applyPortfolioLogos=function(){
     el.setAttribute('aria-label',m.label+' logo');
     el.style.width=((x2-x1)*scale)+'px';
     el.style.height=(naturalH*scale)+'px';
-    el.style.backgroundImage='url("assets/logos/logo-sprite.png")';
+    el.style.backgroundImage='url("'+sprite+'")';
     el.style.backgroundSize=(spriteW*scale)+'px '+(spriteH*scale)+'px';
     el.style.backgroundPosition=(-(m.i*cellW+x1)*scale)+'px '+(-y1*scale)+'px';
     return el;
@@ -46,7 +48,7 @@ window.applyPortfolioLogos=function(){
     if(!degree.includes('M.Sc.')&&!degree.includes('B.Sc.'))return;
     const school=row.querySelector('.school');
     if(!school)return;
-    school.querySelectorAll('.education-logo-pair,.org-logo').forEach(el=>el.remove());
+    school.querySelectorAll('.education-logo-pair,.edu-logo-pair,.org-logo,img.brand-logo').forEach(el=>el.remove());
     school.classList.add('education-school-row');
     const pair=document.createElement('span');
     pair.className='education-logo-pair';
@@ -66,10 +68,10 @@ window.applyPortfolioLogos=function(){
   document.querySelectorAll('#industrial .card').forEach(card=>{
     const h3=card.querySelector('h3');
     if(!h3)return;
-    const title=[...h3.childNodes].filter(n=>n.nodeType===Node.TEXT_NODE).map(n=>n.textContent).join('').trim()||h3.textContent.trim();
+    const title=h3.textContent.trim();
     const key=visits[title];
     if(!key)return;
-    h3.querySelectorAll('.org-logo').forEach(el=>el.remove());
+    h3.querySelectorAll('img.brand-logo,.org-logo').forEach(el=>el.remove());
     h3.classList.add('visit-title-row');
     const logo=makeLogo(key);
     if(logo)h3.prepend(logo);
