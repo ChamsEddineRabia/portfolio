@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0a0a0a">
+<title>Chams Eddine Rabia | Petroleum | Petrochemical & Process Engineer</title>
+<meta name="description" content="Professional digital portfolio of Chams Eddine Rabia — Petroleum | Petrochemical & Process Engineer with oilfield, refining, hydraulic software, technical training and leadership experience.">
+
+<link rel="stylesheet" href="styles.css">
+
+</head>
+<body>
+<div id="site-root"></div>
+<script src="assets/photo-1.js"></script>
+<script src="assets/photo-2.js"></script>
+<script src="assets/photo-3.js"></script>
+<script src="assets/photo-4.js"></script>
+<script src="assets/photo-5.js"></script>
+<script src="assets/photo-6.js"></script>
+<script>
+(async function(){
+  const files=["fragments/part-1.html","fragments/part-2.html","fragments/part-3.html","fragments/part-4.html","fragments/part-5.html"];
+  const html=(await Promise.all(files.map(f=>fetch(f).then(r=>{if(!r.ok) throw new Error(f); return r.text();})))).join("\n");
+  document.getElementById('site-root').innerHTML=html;
+  const img=document.getElementById('profile-photo');
+  if(img&&window.__profilePhoto) img.src='data:image/jpeg;base64,'+window.__profilePhoto;
+})().catch(function(e){document.getElementById('site-root').innerHTML='<main style="font-family:Arial;padding:40px">Portfolio failed to load. Please refresh.</main>'; console.error(e);});
+</script>
+</body>
+</html>
