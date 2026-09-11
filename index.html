@@ -6,13 +6,13 @@
 <meta name="theme-color" content="#0a0a0a">
 <title>Chams Eddine Rabia | Petroleum | Petrochemical & Process Engineer</title>
 <meta name="description" content="Professional digital portfolio of Chams Eddine Rabia — Petroleum | Petrochemical & Process Engineer with oilfield, refining, hydraulic software, technical training and leadership experience.">
-
 <link rel="stylesheet" href="styles.css">
-
+<link rel="stylesheet" href="enhancements.css">
 </head>
 <body>
 <div id="site-root"></div>
 <script src="assets/photo.js"></script>
+<script src="enhancements.js"></script>
 <script>
 (async function(){
   const files=["fragments/part-1.html","fragments/part-2.html","fragments/part-3.html","fragments/part-4.html","fragments/part-5.html"];
@@ -20,6 +20,7 @@
   document.getElementById('site-root').innerHTML=html;
   const img=document.getElementById('profile-photo');
   if(img&&window.__profilePhoto) img.src='data:image/jpeg;base64,'+window.__profilePhoto;
+  if(window.initPortfolioEnhancements) window.initPortfolioEnhancements();
 })().catch(function(e){document.getElementById('site-root').innerHTML='<main style="font-family:Arial;padding:40px">Portfolio failed to load. Please refresh.</main>'; console.error(e);});
 </script>
 </body>
