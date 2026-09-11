@@ -1,0 +1,127 @@
+.technical-card:hover{transform:translateY(-6px);box-shadow:0 28px 60px rgba(0,0,0,.08);border-color:#c3c3bf}
+.technical-card-dark{background:#111;color:white;border-color:#111}
+.technical-card-dark p{color:#c9c9c9}
+.technical-topline{display:flex;justify-content:space-between;gap:16px;text-transform:uppercase;letter-spacing:.13em;font-size:9px;font-weight:900;color:#8f8f8b}
+.technical-card-dark .technical-topline{color:#919191}
+.technical-card h3{font-size:26px;line-height:1.05;letter-spacing:-.045em;margin:34px 0 15px}
+.technical-card p{font-size:13px;line-height:1.65;color:#5e5e5a;margin:0}
+.technical-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:18px}
+.technical-tags span{border:1px solid #d9d9d4;border-radius:999px;padding:6px 8px;font-size:9px;font-weight:800}
+.technical-card-dark .technical-tags span{border-color:#3e3e3e;color:#ddd}
+.technical-metric{margin-top:18px;padding-top:15px;border-top:1px solid var(--line)}
+.technical-metric strong{display:block;font-size:34px;letter-spacing:-.05em}
+.technical-metric span{font-size:10px;color:#777}
+.technical-foot{margin-top:auto;padding-top:18px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:14px;font-size:10px;color:#747470}
+.technical-foot b{color:#111;font-size:10px}.technical-card-dark .technical-foot{border-color:#333;color:#a9a9a9}.technical-card-dark .technical-foot b{color:#fff}
+
+.contact-copy{color:#a9a9a9;max-width:560px;font-size:14px;margin:18px 0 0}
+.premium-contact{padding-top:70px}
+
+.entry,.card,.edu,.mini,.cert,.language,.skill,.academic-row,.project{
+  transition:transform .32s var(--premium-ease),box-shadow .32s var(--premium-ease),background-color .25s ease,border-color .25s ease
+}
+.entry:hover,.card:hover,.edu:hover{transform:translateY(-4px);box-shadow:0 26px 60px rgba(0,0,0,.075)}
+.skill:hover{transform:translateY(-2px);border-color:#bbb;background:#fafaf8}
+.language:hover{transform:translateY(-3px)}
+.contact-links a{transition:padding-left .25s var(--premium-ease),color .25s ease}
+.contact-links a:hover{padding-left:8px;opacity:1;color:#fff}
+
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .72s var(--premium-ease),transform .72s var(--premium-ease)}
+.reveal.visible{opacity:1;transform:none}
+.reveal-stagger>*{opacity:0;transform:translateY(18px);transition:opacity .6s var(--premium-ease),transform .6s var(--premium-ease)}
+.reveal-stagger.visible>*{opacity:1;transform:none}
+.reveal-stagger.visible>*:nth-child(2){transition-delay:.07s}
+.reveal-stagger.visible>*:nth-child(3){transition-delay:.14s}
+.reveal-stagger.visible>*:nth-child(4){transition-delay:.21s}
+.reveal-stagger.visible>*:nth-child(5){transition-delay:.28s}
+.reveal-stagger.visible>*:nth-child(6){transition-delay:.35s}
+
+@media(max-width:1000px){
+  .premium-hero-grid{grid-template-columns:1fr;gap:34px}
+  .premium-portrait,.hero-note{margin-left:0}
+  .technical-grid{grid-template-columns:1fr 1fr}
+  .technical-card:first-child{grid-column:1/-1;min-height:330px}
+}
+@media(max-width:760px){
+  .premium-hero{padding:58px 0 42px}
+  .premium-hero h1{font-size:clamp(52px,17vw,80px)}
+  .premium-hero-grid{gap:28px}
+  .technical-grid{grid-template-columns:1fr}
+  .technical-card:first-child{grid-column:auto}
+  .technical-card{min-height:330px}
+  .focus-line{font-size:11px}
+  .premium-actions .text-link{width:100%;margin:4px 0 0}
+  .brand-copy small{display:block!important}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{scroll-behavior:auto!important;transition:none!important;animation:none!important}
+  .reveal,.reveal-stagger>*{opacity:1!important;transform:none!important}
+}
+
+.org-link{
+  display:inline-flex;align-items:center;gap:3px;margin-left:7px;
+  font-size:10px!important;font-weight:850!important;letter-spacing:.02em;
+  color:#53534f!important;border-bottom:1px solid #bdbdb7;padding-bottom:1px;
+  vertical-align:baseline;white-space:nowrap;
+  transition:color .2s ease,border-color .2s ease,opacity .2s ease;
+}
+.org-link:hover{color:#111!important;border-color:#111;opacity:1!important}
+.org-link.inverse{color:#d8d8d8!important;border-color:#555}
+.org-link.inverse:hover{color:#fff!important;border-color:#fff}
+.card > .org-link{margin:6px 0 0}
+.project-link-row{margin-top:18px!important}
+@media(max-width:760px){
+  .org-link{margin-left:5px}
+}
+
+.brand-row{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.brand-logo{
+  width:92px;height:52px;object-fit:contain;object-position:center center;
+  flex:0 0 auto;padding:2px 4px;border:0;border-radius:0;background:transparent;
+}
+.brand-logo.edu{padding:0;border:0;background:transparent;object-fit:contain}
+.visit-head{display:flex;align-items:center;gap:10px}
+.visit-head .brand-logo{object-fit:contain}
+.company.brand-row{margin-bottom:12px}
+.school.brand-row{margin-top:8px}
+.logo-note{
+  font-size:9px;color:#999;margin-top:6px;text-transform:uppercase;letter-spacing:.08em
+}
+
+/* local embedded logos */
+.company img[alt="NESR logo"],
+.company img[alt="ProcessTool logo"]{width:98px;height:56px}
+.visit-head .sonatrach-logo{width:auto!important;height:62px!important;max-width:105px!important;padding:0!important;border:0!important;background:transparent!important;object-fit:contain!important}
+
+/* v13 — restore original UMBB artwork and balance education logos */
+.education-school{
+  display:grid!important;
+  grid-template-columns:max-content minmax(0,1fr);
+  align-items:center!important;
+  gap:12px!important;
+}
+.edu-logo-pair{
+  display:flex;
+  align-items:center;
+  justify-content:flex-start;
+  gap:6px!important;
+  flex:0 0 auto;
+}
+.edu-logo-pair .brand-logo.edu{
+  padding:0!important;
+  margin:0!important;
+  border:0!important;
+  border-radius:0!important;
+  background:transparent!important;
+  object-fit:contain!important;
+  object-position:center!important;
+}
+.edu-logo-pair .umbb-logo{width:86px!important;height:61px!important}
+.edu-logo-pair .fhc-logo{width:64px!important;height:64px!important}
+@media(max-width:760px){
+  .education-school{grid-template-columns:1fr!important;gap:7px!important}
+  .edu-logo-pair{gap:5px!important}
+  .edu-logo-pair .umbb-logo{width:78px!important;height:55px!important}
+  .edu-logo-pair .fhc-logo{width:58px!important;height:58px!important}
+  .visit-head .sonatrach-logo{height:56px!important}
+}
