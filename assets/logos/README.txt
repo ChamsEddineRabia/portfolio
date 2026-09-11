@@ -1,0 +1,1 @@
+Original organization logo assets used by the portfolio. PNG files are stored locally in this directory so the live portfolio does not depend on third-party image hosts.
