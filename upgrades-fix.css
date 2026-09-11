@@ -1,0 +1,1 @@
+.contact-email-row{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:10px;border-top:1px solid #777}.contact-email-row>a{border-top:0!important;width:100%}@media(max-width:480px){.contact-email-row{grid-template-columns:1fr}.copy-email{justify-self:start;position:static;transform:none}}
