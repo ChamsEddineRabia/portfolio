@@ -6,24 +6,22 @@
 <meta name="theme-color" content="#0a0a0a">
 <title>Chams Eddine Rabia | Petroleum | Petrochemical & Process Engineer</title>
 <meta name="description" content="Professional digital portfolio of Chams Eddine Rabia — Petroleum | Petrochemical & Process Engineer with oilfield, refining, hydraulic software, technical training and leadership experience.">
-<link rel="stylesheet" href="styles.css?v=20260911-3">
-<link rel="stylesheet" href="enhancements.css?v=20260911-3">
-<link rel="stylesheet" href="assets/logos/logos.css?v=20260911-3">
+<link rel="stylesheet" href="styles.css?v=20260911-5">
+<link rel="stylesheet" href="enhancements.css?v=20260911-5">
+<link rel="stylesheet" href="assets/logos/logos.css?v=20260911-5">
 </head>
 <body>
 <div id="site-root"></div>
-<script src="assets/photo.js?v=20260911-3"></script>
-<script src="assets/logos/logos.js?v=20260911-3"></script>
-<script src="enhancements.js?v=20260911-3"></script>
+<script src="assets/photo.js?v=20260911-5"></script>
+<script src="enhancements.js?v=20260911-5"></script>
 <script>
 (async function(){
-  const v='20260911-3';
+  const v='20260911-5';
   const files=["fragments/part-1.html","fragments/part-2.html","fragments/part-3.html","fragments/part-4.html","fragments/part-5.html"];
   const html=(await Promise.all(files.map(f=>fetch(f+'?v='+v,{cache:'no-store'}).then(r=>{if(!r.ok) throw new Error(f); return r.text();})))).join("\n");
   document.getElementById('site-root').innerHTML=html;
   const img=document.getElementById('profile-photo');
   if(img&&window.__profilePhoto) img.src='data:image/jpeg;base64,'+window.__profilePhoto;
-  if(window.applyPortfolioLogos) window.applyPortfolioLogos();
   if(window.initPortfolioEnhancements) window.initPortfolioEnhancements();
 })().catch(function(e){document.getElementById('site-root').innerHTML='<main style="font-family:Arial;padding:40px">Portfolio failed to load. Please refresh.</main>'; console.error(e);});
 </script>
