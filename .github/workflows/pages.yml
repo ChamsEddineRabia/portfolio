@@ -23,6 +23,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Build static EN and FR pages
+        run: python3 build_static.py
+
       - name: Build local logo PNGs and social preview
         run: |
           python3 -m pip install --quiet pillow
