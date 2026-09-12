@@ -11,6 +11,8 @@
       }
     });
 
+    initThemeToggle(lang);
+
     var status=document.querySelector('.status');
     if(status){
       status.classList.add('availability');
@@ -138,6 +140,50 @@
     document.querySelectorAll('img.brand-logo').forEach(function(img){img.loading='lazy';img.decoding='async';});
     var portrait=document.getElementById('profile-photo');
     if(portrait){portrait.decoding='async';portrait.fetchPriority='high';}
+  }
+
+  function initThemeToggle(lang){
+    var root=document.documentElement;
+    var stored=null;
+    try{stored=localStorage.getItem('portfolioTheme');}catch(e){}
+    var systemDark=window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    var theme=(stored==='dark'||stored==='light')?stored:(systemDark?'dark':'light');
+    applyTheme(theme);
+
+    var actions=document.querySelector('.topbar-actions');
+    if(!actions || actions.querySelector('.theme-toggle')) return;
+
+    var button=document.createElement('button');
+    button.type='button';
+    button.className='theme-toggle';
+    button.innerHTML='<span class="theme-icon" aria-hidden="true"></span>';
+    actions.appendChild(button);
+
+    function syncButton(){
+      var current=root.getAttribute('data-theme')==='dark'?'dark':'light';
+      var next=current==='dark'?'light':'dark';
+      button.setAttribute('aria-pressed',current==='dark'?'true':'false');
+      button.setAttribute('aria-label',lang==='fr'?(next==='dark'?'Activer le mode sombre':'Activer le mode clair'):(next==='dark'?'Switch to dark mode':'Switch to light mode'));
+      button.title=button.getAttribute('aria-label');
+      button.querySelector('.theme-icon').textContent=current==='dark'?'☀':'☾';
+    }
+
+    button.addEventListener('click',function(){
+      var next=root.getAttribute('data-theme')==='dark'?'light':'dark';
+      applyTheme(next);
+      try{localStorage.setItem('portfolioTheme',next);}catch(e){}
+      syncButton();
+    });
+
+    syncButton();
+  }
+
+  function applyTheme(theme){
+    var safe=theme==='dark'?'dark':'light';
+    document.documentElement.setAttribute('data-theme',safe);
+    document.documentElement.style.colorScheme=safe;
+    var meta=document.querySelector('meta[name="theme-color"]');
+    if(meta) meta.setAttribute('content',safe==='dark'?'#0f0f10':'#f5f5f3');
   }
 
   function addProof(selector,title,url,lang){
