@@ -15,8 +15,8 @@
     if(status){
       status.classList.add('availability');
       status.innerHTML=lang==='fr'
-        ? 'Disponible · Basé à <b>Annaba, Algérie</b> · Ouvert à la mobilité et aux opportunités en Algérie comme à l’international.'
-        : 'Available · Based in <b>Annaba, Algeria</b> · Open to relocation and engineering opportunities in Algeria and internationally.';
+        ? '<span class="availability-line availability-state">Disponible</span><span class="availability-line">Basé à <b>Annaba, Algérie</b></span><span class="availability-line">Ouvert à la mobilité et aux opportunités en Algérie comme à l’international.</span>'
+        : '<span class="availability-line availability-state">Available</span><span class="availability-line">Based in <b>Annaba, Algeria</b></span><span class="availability-line">Open to relocation and engineering opportunities in Algeria and internationally.</span>';
     }
 
     var projectLinks=document.querySelector('#projects .project-link-row');
