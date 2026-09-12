@@ -1,0 +1,31 @@
+name: Build SEO static preview
+
+on:
+  push:
+    branches: ["preview-seo-static"]
+    paths:
+      - "build_static.py"
+      - "fragments/**"
+      - "fragments-fr/**"
+      - ".github/workflows/preview-static.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  build-preview:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: preview-seo-static
+      - name: Build static EN and FR pages
+        run: python3 build_static.py
+      - name: Commit generated preview pages
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add en/index.html fr/index.html
+          git diff --cached --quiet && exit 0
+          git commit -m "Generate static SEO preview"
+          git push origin HEAD:preview-seo-static
