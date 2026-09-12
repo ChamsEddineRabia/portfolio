@@ -1,6 +1,56 @@
-/* Portfolio finishing layer: SEO-era UI helpers, deep links, availability, copy-email */
+/* Portfolio finishing layer: SEO-era UI helpers, deep links, availability, copy-email, theme */
 .skip-link{position:fixed;left:14px;top:10px;z-index:9999;transform:translateY(-160%);background:#111;color:#fff;border-radius:999px;padding:10px 14px;font:800 12px Arial,sans-serif}.skip-link:focus{transform:none}.portrait-card{margin-bottom:4px}.status{padding-top:4px}.availability{display:grid!important;gap:6px}.availability::before{content:none!important}.availability-line{display:block}.availability-state{font-weight:800}.availability-state::before{content:"";display:inline-block;width:7px;height:7px;margin-right:8px;vertical-align:middle;border-radius:50%;background:#111;box-shadow:0 0 0 4px rgba(0,0,0,.055)}.project-link-row{display:flex;flex-wrap:wrap;align-items:center;gap:12px}.project-proof-link{display:inline-flex;align-items:center;justify-content:center;min-height:38px;padding:0 13px;border:1px solid #555;border-radius:999px;color:#fff!important;font-size:11px;font-weight:900;letter-spacing:.02em}.project-proof-link:hover{background:#fff;color:#111!important;opacity:1}.section-head{position:relative}.deep-link{position:absolute;right:0;top:12px;width:31px;height:31px;display:flex;align-items:center;justify-content:center;border:1px solid var(--line);border-radius:999px;background:#fff;font-size:13px;font-weight:900;opacity:0;color:#777;transition:opacity .2s ease,color .2s ease,border-color .2s ease}.section-head:hover .deep-link,.deep-link:focus{opacity:1;color:#111;border-color:#aaa}.copy-email{margin-left:auto;border:1px solid #444;background:#171717;color:#ddd;border-radius:999px;padding:7px 10px;font-size:10px;font-weight:850;cursor:pointer;white-space:nowrap}.copy-email:hover{background:#fff;color:#111}.copy-toast{position:fixed;left:50%;bottom:24px;z-index:9999;transform:translate(-50%,18px);background:#111;color:#fff;border-radius:999px;padding:10px 14px;font:800 11px Arial,sans-serif;opacity:0;pointer-events:none;transition:.2s ease}.copy-toast.show{opacity:1;transform:translate(-50%,0)}
-@media(max-width:760px){.deep-link{opacity:1;top:9px}.section-head{padding-right:38px}.project-link-row{align-items:stretch}.copy-email{padding:7px 9px}.availability{line-height:1.45}}
+
+/* Light / dark appearance toggle */
+.theme-toggle{width:38px;height:38px;flex:0 0 38px;border:1px solid #cfcfca;border-radius:999px;background:rgba(255,255,255,.72);color:#111;display:inline-flex;align-items:center;justify-content:center;padding:0;cursor:pointer;box-shadow:0 3px 12px rgba(0,0,0,.035);backdrop-filter:blur(12px);transition:transform .2s ease,background-color .25s ease,color .25s ease,border-color .25s ease,box-shadow .25s ease}.theme-toggle:hover{transform:translateY(-1px);background:#fff;box-shadow:0 6px 18px rgba(0,0,0,.08)}.theme-toggle:focus-visible{outline:2px solid var(--ink);outline-offset:3px}.theme-icon{font-size:18px;line-height:1;transform:translateY(-1px)}
+
+html[data-theme="dark"]{color-scheme:dark;--bg:#0f0f10;--paper:#18181a;--ink:#f2f2ef;--muted:#a7a7aa;--line:#343438;--soft:#1e1e20;--accent:#f2f2ef;--shadow:0 20px 50px rgba(0,0,0,.28)}
+html[data-theme="dark"] body{background:var(--bg);color:var(--ink)}
+html[data-theme="dark"] .topbar{background:rgba(15,15,16,.92);border-bottom-color:rgba(255,255,255,.09);box-shadow:0 1px 0 rgba(255,255,255,.025)}
+html[data-theme="dark"] .topbar::after{background:#f2f2ef}
+html[data-theme="dark"] .menu a:hover,html[data-theme="dark"] .menu a.is-active{background:#222225;color:#fff}
+html[data-theme="dark"] .header-cta,html[data-theme="dark"] .btn.primary{background:#f2f2ef;color:#111;border-color:#f2f2ef}
+html[data-theme="dark"] .btn.light{border-color:#626268;color:#f2f2ef}
+html[data-theme="dark"] .btn.light:hover{background:#232326}
+html[data-theme="dark"] .hero h1 span{color:#77777d}
+html[data-theme="dark"] .hero-copy,html[data-theme="dark"] .entry ul{color:#d5d5d7}
+html[data-theme="dark"] .entry,html[data-theme="dark"] .card,html[data-theme="dark"] .edu,html[data-theme="dark"] .language,html[data-theme="dark"] .skill{background:var(--paper);border-color:var(--line);box-shadow:var(--shadow)}
+html[data-theme="dark"] .entry:hover,html[data-theme="dark"] .card:hover,html[data-theme="dark"] .edu:hover,html[data-theme="dark"] .language:hover{border-color:#4a4a50;box-shadow:0 24px 58px rgba(0,0,0,.38)}
+html[data-theme="dark"] .academic-row:hover{background:#1d1d20}
+html[data-theme="dark"] .mini:hover{background:rgba(255,255,255,.035)}
+html[data-theme="dark"] .cert:hover strong{color:#fff}
+html[data-theme="dark"] .card:hover .index{color:#f2f2ef}
+html[data-theme="dark"] .skill:hover{border-color:#54545a;box-shadow:0 8px 18px rgba(0,0,0,.28)}
+html[data-theme="dark"] section.block:hover .section-label{color:#d8d8da}
+html[data-theme="dark"] .portrait-wrap{background:#1b1b1e;border-color:#3d3d42;box-shadow:0 18px 44px rgba(0,0,0,.34)}
+html[data-theme="dark"] .portrait-wrap::after{border-color:rgba(255,255,255,.25)}
+html[data-theme="dark"] .status b{color:#f2f2ef}
+html[data-theme="dark"] .availability-state::before{background:#f2f2ef;box-shadow:0 0 0 4px rgba(255,255,255,.08)}
+html[data-theme="dark"] .language-switcher{border-color:#3b3b40;background:rgba(27,27,30,.88);box-shadow:0 3px 12px rgba(0,0,0,.25)}
+html[data-theme="dark"] .language-switcher a{color:#aaaab0}
+html[data-theme="dark"] .language-switcher a:hover{background:#29292d;color:#fff}
+html[data-theme="dark"] .language-switcher a.is-active{background:#f2f2ef;color:#111;box-shadow:0 3px 10px rgba(0,0,0,.35)}
+html[data-theme="dark"] .theme-toggle{border-color:#3b3b40;background:rgba(27,27,30,.88);color:#f2f2ef;box-shadow:0 3px 12px rgba(0,0,0,.25)}
+html[data-theme="dark"] .theme-toggle:hover{background:#29292d;box-shadow:0 6px 18px rgba(0,0,0,.35)}
+html[data-theme="dark"] .deep-link{background:#18181a;border-color:#3b3b40;color:#aaaab0}
+html[data-theme="dark"] .deep-link:hover,html[data-theme="dark"] .deep-link:focus{color:#fff;border-color:#66666d}
+html[data-theme="dark"] .project{background:#080809;color:#fff}
+html[data-theme="dark"] .project-facts{background:#313136;border-color:#313136}
+html[data-theme="dark"] .project-facts div{background:#121214}
+html[data-theme="dark"] .project-facts div:hover{background:#1a1a1d}
+html[data-theme="dark"] .contact{background:#080809}
+html[data-theme="dark"] .print{background:#f2f2ef;color:#111;border-color:#f2f2ef}
+html[data-theme="dark"] .copy-email{background:#242427;color:#ddd;border-color:#4c4c52}
+html[data-theme="dark"] .copy-email:hover{background:#f2f2ef;color:#111}
+html[data-theme="dark"] ::selection{background:#f2f2ef;color:#111}
+html[data-theme="dark"] a:focus-visible,html[data-theme="dark"] button:focus-visible{outline-color:#f2f2ef}
+html[data-theme="dark"] .brand-logo{background:#f4f4f1!important;border-radius:8px!important;padding:4px 6px!important}
+html[data-theme="dark"] .edu-logo-pair .brand-logo.edu{background:#f4f4f1!important;border-radius:8px!important;padding:4px!important}
+html[data-theme="dark"] .visit-head .sonatrach-logo{background:#f4f4f1!important;border-radius:8px!important;padding:4px 6px!important}
+
+body,.topbar,.entry,.card,.edu,.language,.skill,.status,.language-switcher,.theme-toggle,.deep-link,.project,.contact,.portrait-wrap{transition:background-color .25s ease,color .25s ease,border-color .25s ease,box-shadow .25s ease}
+
+@media(max-width:760px){.deep-link{opacity:1;top:9px}.section-head{padding-right:38px}.project-link-row{align-items:stretch}.copy-email{padding:7px 9px}.availability{line-height:1.45}.theme-toggle{width:34px;height:34px;flex-basis:34px}.theme-icon{font-size:16px}html[data-theme="dark"] .language-switcher{background:rgba(27,27,30,.94)}}
 @media(max-width:480px){.project-link-row a{width:100%;justify-content:center}.contact-links a:first-of-type{padding-right:66px;position:relative}.copy-email{position:absolute;right:0;top:50%;transform:translateY(-50%)}}
-@media print{.skip-link,.deep-link,.copy-email,.copy-toast{display:none!important}}
-@media(prefers-reduced-motion:reduce){.copy-toast,.deep-link{transition:none!important}}
+@media print{.skip-link,.deep-link,.copy-email,.copy-toast,.theme-toggle{display:none!important}}
+@media(prefers-reduced-motion:reduce){.copy-toast,.deep-link,.theme-toggle,body,.topbar,.entry,.card,.edu,.language,.skill,.status,.language-switcher,.project,.contact,.portrait-wrap{transition:none!important}}
