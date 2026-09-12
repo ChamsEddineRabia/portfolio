@@ -183,7 +183,7 @@
     document.documentElement.setAttribute('data-theme',safe);
     document.documentElement.style.colorScheme=safe;
     var meta=document.querySelector('meta[name="theme-color"]');
-    if(meta) meta.setAttribute('content',safe==='dark'?'#0f0f10':'#f5f5f3');
+    if(meta) meta.setAttribute('content',safe==='dark'?'#000000':'#f5f5f3');
   }
 
   function addProof(selector,title,url,lang){
