@@ -8,7 +8,7 @@ CONFIG = {
     "en": {
         "fragment_dir": ROOT / "fragments",
         "title": "Chams Eddine Rabia | Petroleum & Process Engineer",
-        "description": "Portfolio of Chams Eddine Rabia, petroleum, petrochemical and process engineer with experience in oilfield services, refining, hydraulics, HSE and technical leadership.",
+        "description": "Portfolio of Chams Eddine Rabia, petroleum and process engineer with experience in oilfield services, refining, hydraulics, HSE and technical leadership.",
         "aria": "Choose language",
     },
     "fr": {
@@ -18,6 +18,33 @@ CONFIG = {
         "aria": "Choisir la langue",
     },
 }
+
+
+def replace_site_root(html: str, static_markup: str) -> str:
+    marker = '<div id="site-root">'
+    start = html.find(marker)
+    if start == -1:
+        raise RuntimeError('site-root container not found')
+
+    open_end = start + len(marker)
+    depth = 1
+    closing_start = None
+    token_re = re.compile(r'<div\b[^>]*>|</div>', re.I)
+    for match in token_re.finditer(html, open_end):
+        token = match.group(0).lower()
+        if token.startswith('</div'):
+            depth -= 1
+            if depth == 0:
+                closing_start = match.start()
+                break
+        else:
+            depth += 1
+
+    if closing_start is None:
+        raise RuntimeError('site-root closing div not found')
+
+    inner = f'\n<!-- STATIC-CONTENT-START -->\n{static_markup}\n<!-- STATIC-CONTENT-END -->\n'
+    return html[:open_end] + inner + html[closing_start:]
 
 
 def build(lang: str) -> None:
@@ -39,7 +66,7 @@ def build(lang: str) -> None:
         html,
         count=1,
     )
-    html = html.replace('<div id="site-root"></div>', f'<div id="site-root">\n{static_markup}\n</div>', 1)
+    html = replace_site_root(html, static_markup)
 
     init_script = f'''<script>(function(){{
 const lang='{lang}';
