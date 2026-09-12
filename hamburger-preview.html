@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Hamburger Preview — Chams Eddine Rabia</title>
+<style>
+:root{--bg:#f5f5f3;--paper:#fff;--ink:#0c0c0c;--muted:#686868;--line:#ddddda}
+html[data-theme="dark"]{--bg:#000;--paper:#030303;--ink:#f6f6f3;--muted:#a9a9ad;--line:#1d1d1f;color-scheme:dark}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,"Helvetica Neue",Arial,sans-serif;min-height:100vh}.topbar{position:sticky;top:0;background:color-mix(in srgb,var(--bg) 94%,transparent);border-bottom:1px solid var(--line);backdrop-filter:blur(18px)}.inner{width:min(100% - 20px,1240px);margin:auto;min-height:56px;display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:10px}.brand{font-size:14px;font-weight:900;letter-spacing:-.035em;white-space:nowrap}.actions{display:flex;align-items:center;gap:6px}.lang{display:inline-flex;padding:2px;border:1px solid var(--line);border-radius:999px;background:var(--paper)}.lang span{width:29px;height:28px;display:grid;place-items:center;border-radius:999px;font-size:10px;font-weight:900;color:var(--muted)}.lang .active{background:var(--ink);color:var(--bg)}button{font:inherit}.round{width:34px;height:34px;border:1px solid var(--line);border-radius:999px;background:var(--paper);color:var(--ink);display:grid;place-items:center;cursor:pointer}.burger{position:relative}.burger-lines,.burger-lines::before,.burger-lines::after{display:block;width:14px;height:1.5px;border-radius:9px;background:currentColor;transition:.24s ease}.burger-lines{position:relative}.burger-lines::before,.burger-lines::after{content:"";position:absolute;left:0}.burger-lines::before{top:-5px}.burger-lines::after{top:5px}.burger[aria-expanded="true"] .burger-lines{background:transparent}.burger[aria-expanded="true"] .burger-lines::before{top:0;transform:rotate(45deg)}.burger[aria-expanded="true"] .burger-lines::after{top:0;transform:rotate(-45deg)}
+.menu{grid-column:1/-1;display:grid;grid-template-rows:0fr;opacity:0;transition:grid-template-rows .28s cubic-bezier(.22,1,.36,1),opacity .22s ease}.menu.open{grid-template-rows:1fr;opacity:1}.menu-inner{overflow:hidden}.menu-panel{margin:0 0 10px;padding:8px;border:1px solid var(--line);border-radius:18px;background:var(--paper);box-shadow:0 16px 42px rgba(0,0,0,.28)}.menu a{display:flex;align-items:center;justify-content:space-between;padding:13px 12px;border-radius:12px;color:var(--ink);text-decoration:none;font-size:13px;font-weight:800;border-bottom:1px solid var(--line)}.menu a:last-child{border-bottom:0}.menu a:hover{background:color-mix(in srgb,var(--ink) 7%,transparent)}.menu small{color:var(--muted);font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase}.demo{width:min(100% - 24px,430px);margin:54px auto}.demo h1{font-size:44px;line-height:.92;letter-spacing:-.055em;margin:0 0 16px}.demo p{color:var(--muted);line-height:1.55}.note{margin-top:22px;padding:14px 16px;border:1px solid var(--line);border-radius:16px;background:var(--paper);font-size:12px;color:var(--muted)}
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="inner">
+    <div class="brand">CHAMS EDDINE RABIA</div>
+    <div class="actions">
+      <div class="lang" aria-label="Language"><span class="active">EN</span><span>FR</span></div>
+      <button class="round" id="theme" aria-label="Toggle theme">☀</button>
+      <button class="round burger" id="burger" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open navigation"><span class="burger-lines" aria-hidden="true"></span></button>
+    </div>
+    <nav class="menu" id="mobile-menu" aria-hidden="true">
+      <div class="menu-inner"><div class="menu-panel">
+        <a href="#"><span>Freelance</span><small>01</small></a>
+        <a href="#"><span>Professional Experience</span><small>02</small></a>
+        <a href="#"><span>Education</span><small>04</small></a>
+        <a href="#"><span>Training</span><small>05</small></a>
+        <a href="#"><span>Certificates</span><small>09</small></a>
+        <a href="#"><span>Leadership</span><small>10</small></a>
+        <a href="#"><span>Volunteering</span><small>11</small></a>
+      </div></div>
+    </nav>
+  </div>
+</header>
+<main class="demo">
+  <h1>Hamburger<br>preview.</h1>
+  <p>Tap the three-line button in the top-right. It morphs into an × and opens a compact full-width navigation panel directly beneath the header.</p>
+  <div class="note">Preview only. Nothing on the live portfolio is changed by this page.</div>
+</main>
+<script>
+const burger=document.getElementById('burger'),menu=document.getElementById('mobile-menu'),theme=document.getElementById('theme');
+burger.addEventListener('click',()=>{const open=burger.getAttribute('aria-expanded')==='true';burger.setAttribute('aria-expanded',String(!open));burger.setAttribute('aria-label',open?'Open navigation':'Close navigation');menu.classList.toggle('open',!open);menu.setAttribute('aria-hidden',String(open));});
+theme.addEventListener('click',()=>{const dark=document.documentElement.dataset.theme==='dark';document.documentElement.dataset.theme=dark?'light':'dark';theme.textContent=dark?'☾':'☀';});
+</script>
+</body>
+</html>
