@@ -32,3 +32,34 @@ html[data-theme="dark"] .menu a:focus-visible{outline:2px solid #fff;outline-off
 /* Avoid an artificial scrolling ancestor that disables the sticky menu. */
 @media(max-width:760px){html,body{overflow-x:clip;overflow-y:visible}}
 .menu a.is-active,.menu a.is-active:hover{opacity:1}
+
+/* Smartphone layout for the bilingual menu, CV downloads and contact links. */
+@media(max-width:760px){
+  .topbar-inner{grid-template-columns:minmax(0,1fr) auto;gap:6px 8px}
+  .brand{font-size:12px;line-height:1.2;overflow-wrap:normal}
+  .topbar-actions{gap:4px;min-width:0}
+  .header-cta{min-height:44px;padding:7px 9px}
+  .language-switcher{padding:2px}
+  .language-switcher a{min-width:34px;height:40px}
+  .theme-toggle{width:40px;height:44px;flex-basis:40px}
+  .menu{gap:3px;align-items:stretch;padding:2px 0}
+  .menu a{display:flex;align-items:center;justify-content:center;min-height:36px;font-size:11px;line-height:1.25;padding:7px 9px;max-width:100%;white-space:normal;text-align:center}
+  .section-title{overflow-wrap:anywhere}
+  .cv-floating{width:min(290px,calc(100vw - 24px));max-width:calc(100vw - 24px);padding:9px;gap:4px;border-radius:14px}
+  .cv-floating .btn{min-height:44px;font-size:12px;padding:8px 10px;text-align:center;line-height:1.3}
+  .cv-floating .cv-alternative{display:flex;align-items:center;justify-content:center;min-height:44px;padding:4px 6px;font-size:11px;line-height:1.4}
+  .contact{padding-bottom:calc(160px + env(safe-area-inset-bottom))}
+  .contact-links a{min-height:48px}
+  .contact-links a span:last-child{font-size:13px}
+  .copy-email{min-height:44px;min-width:64px}
+}
+@media(max-width:480px){
+  .contact-email-row{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:8px}
+  .contact-email-row a:first-of-type{padding-right:0;min-width:0}
+  .contact-email-row .copy-email{position:static;transform:none;padding:8px}
+}
+@media(max-height:500px) and (orientation:landscape){
+  .topbar-inner{padding:4px 0;gap:3px 8px}
+  .menu a{min-height:30px;padding:4px 7px}
+  .cv-floating{width:260px;right:8px;bottom:calc(8px + env(safe-area-inset-bottom));padding:6px}
+}
