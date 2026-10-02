@@ -28,3 +28,7 @@ html[data-theme="dark"] .menu a.is-active,html[data-theme="dark"] .menu a.is-act
 html[data-theme="dark"] .menu a:hover{background:#222;color:#fff}
 html[data-theme="dark"] .menu a:focus-visible{outline:2px solid #fff;outline-offset:3px}
 .topbar::after{height:3px}
+
+/* Avoid an artificial scrolling ancestor that disables the sticky menu. */
+@media(max-width:760px){html,body{overflow-x:clip;overflow-y:visible}}
+.menu a.is-active,.menu a.is-active:hover{opacity:1}

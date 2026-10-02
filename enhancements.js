@@ -42,37 +42,6 @@ window.initPortfolioEnhancements=function(){
   window.addEventListener('scroll',setProgress,{passive:true});
   window.addEventListener('resize',setProgress);
 
-  const navLinks=[...document.querySelectorAll('.menu a[href^="#"]')];
-  const sectionMap=navLinks.map(link=>{
-    const id=link.getAttribute('href').slice(1);
-    return {link,section:document.getElementById(id)};
-  }).filter(x=>x.section);
-
-  // Track the section at the reading position rather than observer entry order.
-  let navFrame=0;
-  const updateActiveSection=()=>{
-    navFrame=0;
-    const readingLine=(topbar?topbar.getBoundingClientRect().height:0)+80;
-    let active=null;
-    sectionMap.forEach(item=>{
-      if(item.section.getBoundingClientRect().top<=readingLine)active=item;
-    });
-    navLinks.forEach(link=>{
-      const current=!!active&&link===active.link;
-      link.classList.toggle('is-active',current);
-      if(current)link.setAttribute('aria-current','location');
-      else link.removeAttribute('aria-current');
-    });
-  };
-  const scheduleActiveSection=()=>{
-    if(!navFrame)navFrame=requestAnimationFrame(updateActiveSection);
-  };
-  updateActiveSection();
-  window.addEventListener('scroll',scheduleActiveSection,{passive:true});
-  window.addEventListener('resize',scheduleActiveSection);
-  window.addEventListener('hashchange',scheduleActiveSection);
-  window.addEventListener('load',scheduleActiveSection);
-
   document.querySelectorAll('a[href^="#"]').forEach(link=>{
     link.addEventListener('click',()=>{
       const href=link.getAttribute('href');
