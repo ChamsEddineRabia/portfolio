@@ -20,3 +20,11 @@ html[data-theme="dark"] .floating-cv{background:#fff;color:#000;border-color:#ff
 .contact{padding-bottom:180px}
 @media(max-width:760px){.cv-floating{right:12px;bottom:calc(12px + env(safe-area-inset-bottom));padding:11px;max-width:min(320px,calc(100vw - 24px))}.cv-floating .cv-alternative{font-size:11px}.contact{padding-bottom:170px}}
 @media print{.cv-floating{display:none!important}}
+
+/* Direct section navigation and a clearly visible reading position. */
+html{scroll-behavior:auto!important}
+.menu a.is-active{background:#111;color:#fff;box-shadow:none;font-weight:800;text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:4px}
+html[data-theme="dark"] .menu a.is-active,html[data-theme="dark"] .menu a.is-active:hover{background:#fff;color:#000;border-radius:999px;box-shadow:0 0 0 1px #fff}
+html[data-theme="dark"] .menu a:hover{background:#222;color:#fff}
+html[data-theme="dark"] .menu a:focus-visible{outline:2px solid #fff;outline-offset:3px}
+.topbar::after{height:3px}

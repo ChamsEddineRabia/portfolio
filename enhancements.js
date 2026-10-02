@@ -48,16 +48,30 @@ window.initPortfolioEnhancements=function(){
     return {link,section:document.getElementById(id)};
   }).filter(x=>x.section);
 
-  if('IntersectionObserver' in window && sectionMap.length){
-    const navObserver=new IntersectionObserver(entries=>{
-      const visible=entries.filter(e=>e.isIntersecting).sort((a,b)=>b.intersectionRatio-a.intersectionRatio);
-      if(!visible.length)return;
-      const active=sectionMap.find(x=>x.section===visible[0].target);
-      if(!active)return;
-      navLinks.forEach(link=>link.classList.toggle('is-active',link===active.link));
-    },{rootMargin:'-24% 0px -60% 0px',threshold:[0,.15,.35,.6]});
-    sectionMap.forEach(x=>navObserver.observe(x.section));
-  }
+  // Track the section at the reading position rather than observer entry order.
+  let navFrame=0;
+  const updateActiveSection=()=>{
+    navFrame=0;
+    const readingLine=(topbar?topbar.getBoundingClientRect().height:0)+80;
+    let active=null;
+    sectionMap.forEach(item=>{
+      if(item.section.getBoundingClientRect().top<=readingLine)active=item;
+    });
+    navLinks.forEach(link=>{
+      const current=!!active&&link===active.link;
+      link.classList.toggle('is-active',current);
+      if(current)link.setAttribute('aria-current','location');
+      else link.removeAttribute('aria-current');
+    });
+  };
+  const scheduleActiveSection=()=>{
+    if(!navFrame)navFrame=requestAnimationFrame(updateActiveSection);
+  };
+  updateActiveSection();
+  window.addEventListener('scroll',scheduleActiveSection,{passive:true});
+  window.addEventListener('resize',scheduleActiveSection);
+  window.addEventListener('hashchange',scheduleActiveSection);
+  window.addEventListener('load',scheduleActiveSection);
 
   document.querySelectorAll('a[href^="#"]').forEach(link=>{
     link.addEventListener('click',()=>{
