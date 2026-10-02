@@ -49,7 +49,7 @@ def replace_site_root(html: str, static_markup: str) -> str:
 
 def enrich_markup(markup: str, lang: str) -> str:
     if lang == 'en':
-        cta = '<a class="header-cta" href="mailto:chamssourabia@gmail.com">Contact</a>'
+        cta = '<a class="header-cta" href="#contact">Contact</a>'
         switcher = '<div class="topbar-actions">' + cta + '<div class="language-switcher" role="group" aria-label="Choose language"><a href="../en/" class="is-active" aria-current="true">EN</a><a href="../fr/">FR</a></div></div>'
         markup = markup.replace(cta, switcher, 1)
 
@@ -63,7 +63,7 @@ def enrich_markup(markup: str, lang: str) -> str:
         markup = markup.replace('Algerian Red Crescent — Annaba Branch</div>', 'Algerian Red Crescent — Annaba Branch <a class="org-link" href="https://cra.dz/" rel="noopener noreferrer" target="_blank">Official website ↗</a> <a class="org-link supporting-proof" href="https://drive.google.com/file/d/19R7CDEOqr57DHEOVaEP2umz7M0kxUoPr/view?usp=drivesdk" rel="noopener noreferrer" target="_blank">Credential ↗</a></div>', 1)
         markup = markup.replace('SYLABS × UNICEF Algeria</div>', 'SYLABS × UNICEF Algeria <a class="org-link supporting-proof" href="https://drive.google.com/file/d/1YwtPuH_AN2p1NMc5HmxY0Dh90nDUebLY/view?usp=drivesdk" rel="noopener noreferrer" target="_blank">Credential ↗</a></div>', 1)
     else:
-        cta = '<a class="header-cta" href="mailto:chamssourabia@gmail.com">Contact</a>'
+        cta = '<a class="header-cta" href="#contact">Contact</a>'
         switcher = '<div class="topbar-actions">' + cta + '<div class="language-switcher" role="group" aria-label="Choisir la langue"><a href="../en/">EN</a><a href="../fr/" class="is-active" aria-current="true">FR</a></div></div>'
         markup = markup.replace(cta, switcher, 1)
 
@@ -133,3 +133,4 @@ for language in ("en", "fr"):
     build(language)
 
 print("Built static SEO pages for EN and FR")
+
