@@ -48,7 +48,7 @@ html[data-theme="dark"] .copy-email:hover{background:#fff;color:#000}
 html[data-theme="dark"] ::selection{background:#fff;color:#000}
 html[data-theme="dark"] a:focus-visible,html[data-theme="dark"] button:focus-visible{outline-color:#fff}
 html[data-theme="dark"] .brand-logo{background:transparent!important;border-radius:0!important;filter:drop-shadow(.6px 0 0 #fff) drop-shadow(-.6px 0 0 #fff) drop-shadow(0 .6px 0 #fff) drop-shadow(0 -.6px 0 #fff)}
-html[data-theme="dark"] .edu-logo-pair .brand-logo.edu{background:transparent!important;border-radius:0!important}
+html[data-theme="dark"] .edu-logo-pair .brand-logo.edu{background:transparent!important;border-radius:0!important;filter:none!important;padding:0!important}
 html[data-theme="dark"] .visit-head .sonatrach-logo{background:transparent!important;border-radius:0!important}
 
 body,.topbar,.entry,.card,.edu,.language,.skill,.status,.language-switcher,.theme-toggle,.deep-link,.project,.contact,.portrait-wrap{transition:background-color .25s ease,color .25s ease,border-color .25s ease,box-shadow .25s ease}
