@@ -2,7 +2,7 @@
 (function () {
   function init() {
     const header = document.querySelector('.topbar');
-    const links = Array.from(document.querySelectorAll('.menu a[href^="#"]'));
+    const links = Array.from(document.querySelectorAll('.menu a[href^="#"], .header-cta[href="#contact"]'));
     const items = links.map(link => ({
       link,
       section: document.getElementById(link.getAttribute('href').slice(1))
@@ -18,6 +18,9 @@
       for (const item of items) {
         if (item.section.getBoundingClientRect().top <= readingLine) active = item;
       }
+      const contact = items.find(item => item.section.id === 'contact');
+      const atBottom = Math.ceil(window.scrollY + window.innerHeight) >= document.documentElement.scrollHeight - 2;
+      if (contact && atBottom && contact.section.getBoundingClientRect().top < window.innerHeight) active = contact;
       for (const link of links) {
         const current = Boolean(active && link === active.link);
         link.classList.toggle('is-active', current);
