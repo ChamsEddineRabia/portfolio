@@ -63,3 +63,10 @@ html[data-theme="dark"] .menu a:focus-visible{outline:2px solid #fff;outline-off
   .menu a{min-height:30px;padding:4px 7px}
   .cv-floating{width:260px;right:8px;bottom:calc(8px + env(safe-area-inset-bottom));padding:6px}
 }
+
+/* Preserve the current portfolio; refine only corner shapes. */
+.btn,.header-cta,.theme-toggle,.language-switcher,.language-switcher a,.menu a,.skill,.print,.floating-cv,.copy-email,.copy-toast,.deep-link,.project-proof-link,.project-link-row a{border-radius:4px!important}
+.entry,.card,.edu,.language,.project,.cv-floating{border-radius:6px!important}
+.portrait-wrap,.portrait-wrap::after{border-radius:6px!important}
+.contact{border-radius:6px 6px 0 0!important}
+html[data-theme="dark"] .menu a.is-active,html[data-theme="dark"] .menu a.is-active:hover{border-radius:4px!important}
