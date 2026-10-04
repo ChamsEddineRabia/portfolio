@@ -47,6 +47,17 @@ def replace_site_root(html: str, static_markup: str) -> str:
     return html[:open_end] + inner + html[closing_start:]
 
 
+
+def place_cv_bar(html: str) -> str:
+    """Render the CV controls first, outside all page layout containers."""
+    pattern = r'<div class="cv-downloads cv-floating"[^>]*>.*?</div>'
+    bars = re.findall(pattern, html, flags=re.S)
+    if not bars:
+        raise RuntimeError('CV download bar not found')
+    html = re.sub(pattern, '', html, flags=re.S)
+    return html.replace('<body>', '<body>\\n' + bars[-1], 1)
+
+
 def enrich_markup(markup: str, lang: str) -> str:
     if lang == 'en':
         cta = '<a class="header-cta" href="#contact">Contact</a>'
@@ -99,7 +110,7 @@ def build(lang: str) -> None:
         html,
         count=1,
     )
-    html = replace_site_root(html, static_markup)
+    html = place_cv_bar(replace_site_root(html, static_markup))
 
     init_script = f'''<script>(function(){{
 const lang='{lang}';
