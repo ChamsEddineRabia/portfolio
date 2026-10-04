@@ -55,7 +55,7 @@ def place_cv_bar(html: str) -> str:
     if not bars:
         raise RuntimeError('CV download bar not found')
     html = re.sub(pattern, '', html, flags=re.S)
-    return html.replace('<body>', '<body>\\n' + bars[-1], 1)
+    return re.sub(r'<body>\\s*', lambda _: '<body>\n' + bars[-1] + '\n', html, count=1)
 
 
 def enrich_markup(markup: str, lang: str) -> str:
